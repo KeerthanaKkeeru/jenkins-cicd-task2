@@ -1,0 +1,10 @@
+{
+  "name": "jenkins-cicd-task2",
+  "version": "1.0.0",
+  "description": "Simple Jenkins CI/CD application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node --check app.js"
+  }
+}
