@@ -1,0 +1,138 @@
+Started by user admin
+Obtained Jenkinsfile from git https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > C:\Program Files\Git\cmd\git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline\.git # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\cmd\git.exe config remote.origin.url https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git # timeout=10
+Fetching upstream changes from https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git
+ > C:\Program Files\Git\cmd\git.exe --version # timeout=10
+ > git --version # 'git version 2.56.0.windows.2'
+ > C:\Program Files\Git\cmd\git.exe fetch --tags --force --progress -- https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\cmd\git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision 1b731772e6dd5d39c60b543d9a0afaab79b6c375 (refs/remotes/origin/main)
+ > C:\Program Files\Git\cmd\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\cmd\git.exe checkout -f 1b731772e6dd5d39c60b543d9a0afaab79b6c375 # timeout=10
+Commit message: "Add Jenkins CI CD pipeline"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] echo
+Getting source code from GitHub
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > C:\Program Files\Git\cmd\git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline\.git # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\cmd\git.exe config remote.origin.url https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git # timeout=10
+Fetching upstream changes from https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git
+ > C:\Program Files\Git\cmd\git.exe --version # timeout=10
+ > git --version # 'git version 2.56.0.windows.2'
+ > C:\Program Files\Git\cmd\git.exe fetch --tags --force --progress -- https://github.com/KeerthanaKkeeru/jenkins-cicd-task2.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\cmd\git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision 1b731772e6dd5d39c60b543d9a0afaab79b6c375 (refs/remotes/origin/main)
+ > C:\Program Files\Git\cmd\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\cmd\git.exe checkout -f 1b731772e6dd5d39c60b543d9a0afaab79b6c375 # timeout=10
+Commit message: "Add Jenkins CI CD pipeline"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] echo
+Testing JavaScript syntax
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline>npm test 
+
+> jenkins-cicd-task2@1.0.0 test
+> node --check app.js
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Building Docker image
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline>docker build -t jenkins-cicd-task2 . 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 151B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:22-alpine
+#2 DONE 2.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 620B 0.0s done
+#4 DONE 0.1s
+
+#5 [1/4] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#5 resolve docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 0.1s done
+#5 DONE 0.1s
+
+#6 [2/4] WORKDIR /app
+#6 CACHED
+
+#7 [3/4] COPY package.json ./
+#7 CACHED
+
+#8 [4/4] COPY app.js ./
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:ac127a28658f9309506388b889100882495a97251dd44a3a9a0b3b3653a26cc8 done
+#9 exporting config sha256:f5f6e1054db70247773dfc7b723f7a0693c9e3be8a2861729c817b5e5eb53526 done
+#9 exporting attestation manifest sha256:91fd93edcc6385644530da04ddc7ac47660d40339bde9a6413842d619b529556 0.0s done
+#9 exporting manifest list sha256:6fd404f8b99294dcaab378423dddba0bc5d479f9c0bd7652fd83a9caea6032f9
+#9 exporting manifest list sha256:6fd404f8b99294dcaab378423dddba0bc5d479f9c0bd7652fd83a9caea6032f9 0.0s done
+#9 naming to docker.io/library/jenkins-cicd-task2:latest done
+#9 unpacking to docker.io/library/jenkins-cicd-task2:latest 0.0s done
+#9 DONE 9.5s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+Deploying application
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline>docker rm -f jenkins-task2-app  2>NUL 
+jenkins-task2-app
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Task2-CICD-Pipeline>docker run -d --name jenkins-task2-app -p 3000:3000 jenkins-cicd-task2 
+90ed731a6668e6e06d4c4eae4a09daf6859600630ca3a2f956860fc0c7446759
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+CI/CD Pipeline completed successfully!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
